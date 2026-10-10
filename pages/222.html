@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BMW Traffic Rush</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    overflow:hidden;
+    background:#05080b;
+    font-family:Arial,sans-serif;
+}
+
+canvas{
+    display:block;
+    margin:auto;
+    width:min(100vw,600px);
+    height:100vh;
+    background:#222;
+}
+
+#hud{
+    position:fixed;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:20;
+
+    display:flex;
+    gap:25px;
+
+    padding:12px 22px;
+
+    color:white;
+    background:rgba(4,9,14,.82);
+
+    border:1px solid #6c8798;
+    border-radius:14px;
+
+    box-shadow:0 8px 35px #0009;
+
+    font-weight:bold;
+}
+
+#hud span{
+    color:#4dcaff;
+}
+
+#menu{
+    position:fixed;
+    inset:0;
+
+    z-index:30;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(#0007,#000b),
+        url("https://p3.hippopx.com/preview/194/502/aerial-view-flyover-roads-urban-expressway-intersection-multiple-lanes-top-down-view-busy-traffic-city-infrastructure-road-network-transportation.jpg")
+        center/cover;
+}
+
+.panel{
+    width:350px;
+    padding:38px;
+
+    text-align:center;
+
+    color:white;
+
+    background:rgba(7,13,19,.88);
+
+    border:1px solid #607887;
+    border-radius:22px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 20px 80px #000,
+        inset 0 0 40px #ffffff08;
+}
+
+.panel h1{
+    color:#58caff;
+    font-size:40px;
+    margin-bottom:12px;
+    text-shadow:0 0 25px #009dff;
+}
+
+.panel p{
+    color:#aebbc3;
+    line-height:1.6;
+    margin:8px;
+}
+
+button{
+    border:0;
+    border-radius:11px;
+
+    padding:14px 30px;
+
+    background:#128bd1;
+    color:white;
+
+    font-size:17px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.06);
+    background:#20aaff;
+}
+
+#controls{
+    position:fixed;
+    bottom:22px;
+    left:0;
+    right:0;
+
+    z-index:25;
+
+    display:flex;
+    justify-content:center;
+    gap:25px;
+}
+
+.control{
+    width:80px;
+    height:60px;
+
+    font-size:27px;
+
+    background:#101e28dd;
+
+    border:1px solid #66818f;
+
+    backdrop-filter:blur(10px);
+}
+
+.hidden{
+    display:none!important;
+}
+</style>
+</head>
+
+<body>
+
+<div id="hud">
+    🏁 <span id="score">0</span>
+    🚗 <span id="speed">0</span> km/h
+    💰 <span id="coins">0</span>
+</div>
+
+<canvas id="game" width="600" height="900"></canvas>
+
+<div id="menu">
+
+    <div class="panel">
+
+        <h1>TRAFFIC RUSH</h1>
+
+        <p>
+            REAL TRAFFIC EDITION
+        </p>
+
+        <p>
+            Dodge BMWs, Volvos and Audis
+            from a realistic aerial view.
+        </p>
+
+        <p>
+            ← → / A D to change lanes
+        </p>
+
+        <button onclick="startGame()">
+            START RACE
+        </button>
+
+    </div>
+
+</div>
+
+<div id="controls">
+
+    <button
+        class="control"
+        onclick="moveLeft()">
+        ◀
+    </button>
+
+    <button
+        class="control"
+        onclick="moveRight()">
+        ▶
+    </button>
+
+</div>
+
+<script>
+
+/* ==================================================
+   CANVAS
+================================================== */
+
+const canvas =
+    document.getElementById("game");
+
+const ctx =
+    canvas.getContext("2d");
+
+const W=600;
+const H=900;
+
+
+/* ==================================================
+   HUD
+================================================== */
+
+const scoreEl =
+    document.getElementById("score");
+
+const speedEl =
+    document.getElementById("speed");
+
+const coinsEl =
+    document.getElementById("coins");
+
+const menu =
+    document.getElementById("menu");
+
+
+/* ==================================================
+   REAL ONLINE IMAGES
+================================================== */
+
+/*
+BMW - real top-down image
+*/
+const BMW_IMAGE =
+"https://file.aiquickdraw.com/imgcompressed/img/compressed_7284d069920355cb7850a5bfa5891314.webp";
+
+
+/*
+Volvo XC90 - real overhead image
+*/
+const VOLVO_IMAGE =
+"https://carfax-vrs.imgix.net/2004-Volvo-XC90-EX-Marketing-05.jpg";
+
+
+/*
+Audi R8 - real top view photograph
+*/
+const AUDI_IMAGE =
+"https://upload.wikimedia.org/wikipedia/commons/d/d8/Audi_R8_%28top_view%29.jpg";
+
+
+const images={
+
+    BMW:new Image(),
+
+    VOLVO:new Image(),
+
+    AUDI:new Image()
+
+};
+
+images.BMW.src=BMW_IMAGE;
+images.VOLVO.src=VOLVO_IMAGE;
+images.AUDI.src=AUDI_IMAGE;
+
+
+/* ==================================================
+   REAL HIGHWAY PHOTO
+================================================== */
+
+const highwayImage=new Image();
+
+highwayImage.src=
+"https://p3.hippopx.com/preview/194/502/aerial-view-flyover-roads-urban-expressway-intersection-multiple-lanes-top-down-view-busy-traffic-city-infrastructure-road-network-transportation.jpg";
+
+
+/* ==================================================
+   GAME
+================================================== */
+
+let running=false;
+
+let score=0;
+
+let coins=0;
+
+let speed=8;
+
+let roadOffset=0;
+
+let spawnTimer=0;
+
+let coinTimer=0;
+
+let lastTime=0;
+
+
+/* ==================================================
+   LANES
+================================================== */
+
+const lanes=[
+    205,
+    300,
+    395
+];
+
+
+/* ==================================================
+   PLAYER
+================================================== */
+
+const player={
+
+    lane:1,
+
+    x:lanes[1],
+
+    targetX:lanes[1],
+
+    y:735,
+
+    width:62,
+
+    height:120,
+
+    angle:0,
+
+    targetAngle:0,
+
+    image:images.BMW,
+
+    brand:"BMW"
+
+};
+
+
+/* ==================================================
+   TRAFFIC
+================================================== */
+
+let traffic=[];
+
+
+/* ==================================================
+   COINS
+================================================== */
+
+let coinObjects=[];
+
+
+/* ==================================================
+   START
+================================================== */
+
+function startGame(){
+
+    running=true;
+
+    score=0;
+
+    coins=0;
+
+    speed=8;
+
+    roadOffset=0;
+
+    spawnTimer=0;
+
+    coinTimer=0;
+
+    traffic=[];
+
+    coinObjects=[];
+
+    player.lane=1;
+
+    player.x=lanes[1];
+
+    player.targetX=lanes[1];
+
+    player.angle=0;
+
+    player.targetAngle=0;
+
+    menu.classList.add("hidden");
+
+    lastTime=
+        performance.now();
+
+    requestAnimationFrame(loop);
+}
+
+
+/* ==================================================
+   SMOOTH LANE CHANGE
+================================================== */
+
+function moveLeft(){
+
+    if(!running)
+        return;
+
+    if(player.lane>0){
+
+        player.lane--;
+
+        player.targetX=
+            lanes[player.lane];
+
+        player.targetAngle=-0.13;
+    }
+}
+
+
+function moveRight(){
+
+    if(!running)
+        return;
+
+    if(player.lane<2){
+
+        player.lane++;
+
+        player.targetX=
+            lanes[player.lane];
+
+        player.targetAngle=0.13;
+    }
+}
+
+
+/* ==================================================
+   ROAD
+================================================== */
+
+function drawRoad(){
+
+    /*
+    REAL PHOTO BACKGROUND
+    */
+
+    if(highwayImage.complete){
+
+        ctx.globalAlpha=.32;
+
+        ctx.drawImage(
+            highwayImage,
+            0,
+            0,
+            W,
+            H
+        );
+
+        ctx.globalAlpha=1;
+
+    }
+    else{
+
+        ctx.fillStyle="#48603d";
+
+        ctx.fillRect(
+            0,
+            0,
+            W,
+            H
+        );
+    }
+
+
+    /*
+    Dark overlay
+    */
+
+    ctx.fillStyle=
+        "rgba(0,0,0,.28)";
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    /*
+    MAIN HIGHWAY
+    */
+
+    ctx.fillStyle="#34383b";
+
+    ctx.beginPath();
+
+    ctx.moveTo(105,0);
+
+    ctx.lineTo(495,0);
+
+    ctx.lineTo(575,H);
+
+    ctx.lineTo(25,H);
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /*
+    ROAD EDGE
+    */
+
+    ctx.strokeStyle="#e7e7e7";
+
+    ctx.lineWidth=5;
+
+    ctx.beginPath();
+
+    ctx.moveTo(105,0);
+
+    ctx.lineTo(25,H);
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(495,0);
+
+    ctx.lineTo(575,H);
+
+    ctx.stroke();
+
+
+    /*
+    LANE MARKINGS
+    */
+
+    ctx.strokeStyle=
+        "rgba(255,255,255,.85)";
+
+    ctx.lineWidth=4;
+
+    ctx.setLineDash([
+        38,
+        34
+    ]);
+
+    ctx.lineDashOffset=
+        -roadOffset;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(235,0);
+
+    ctx.lineTo(220,H);
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(365,0);
+
+    ctx.lineTo(380,H);
+
+    ctx.stroke();
+
+
+    ctx.setLineDash([]);
+
+
+    roadOffset+=speed;
+
+    if(roadOffset>72)
+        roadOffset=0;
+}
+
+
+/* ==================================================
+   CAR IMAGE PROCESSING
+================================================== */
+
+function drawRealCar(car,isPlayer=false){
+
+    if(
+        !car.image ||
+        !car.image.complete
+    ){
+
+        return;
+
+    }
+
+
+    ctx.save();
+
+
+    ctx.translate(
+        car.x,
+        car.y
+    );
+
+
+    /*
+    TURN ANIMATION
+    */
+
+    if(isPlayer){
+
+        ctx.rotate(
+            car.angle
+        );
+
+    }
+
+
+    /*
+    REALISTIC SHADOW
+    */
+
+    ctx.save();
+
+    ctx.globalAlpha=.45;
+
+    ctx.filter="blur(7px)";
+
+    ctx.fillStyle="#000";
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+        0,
+        8,
+        car.width*.55,
+        car.height*.43,
+        0,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    ctx.restore();
+
+
+    /*
+    REAL CAR PHOTO
+    */
+
+    ctx.drawImage(
+
+        car.image,
+
+        -car.width/2,
+
+        -car.height/2,
+
+        car.width,
+
+        car.height
+
+    );
+
+
+    /*
+    BLUE GLOW FOR PLAYER
+    */
+
+    if(isPlayer){
+
+        ctx.strokeStyle=
+            "rgba(40,190,255,.7)";
+
+        ctx.lineWidth=2;
+
+        ctx.shadowColor=
+            "#00bfff";
+
+        ctx.shadowBlur=16;
+
+        ctx.strokeRect(
+
+            -car.width/2,
+
+            -car.height/2,
+
+            car.width,
+
+            car.height
+
+        );
+    }
+
+
+    ctx.restore();
+}
+
+
+/* ==================================================
+   TRAFFIC CAR TYPES
+================================================== */
+
+const carTypes=[
+
+    {
+        brand:"BMW",
+        image:images.BMW
+    },
+
+    {
+        brand:"VOLVO",
+        image:images.VOLVO
+    },
+
+    {
+        brand:"AUDI",
+        image:images.AUDI
+    },
+
+    {
+        brand:"BMW",
+        image:images.BMW
+    },
+
+    {
+        brand:"VOLVO",
+        image:images.VOLVO
+    }
+
+];
+
+
+/* ==================================================
+   SMART TRAFFIC
+================================================== */
+
+function spawnTraffic(){
+
+    /*
+    Find lanes that are NOT occupied
+    near the spawn zone.
+    */
+
+    let occupied=[];
+
+
+    for(
+        const car of traffic
+    ){
+
+        if(car.y<190){
+
+            occupied.push(
+                car.lane
+            );
+
+        }
+    }
+
+
+    let available=[
+        0,
+        1,
+        2
+    ].filter(
+        lane =>
+            !occupied.includes(lane)
+    );
+
+
+    /*
+    NO WALL OF CHINA:
+
+    Maximum TWO cars.
+
+    NEVER THREE.
+    */
+
+    if(
+        available.length===0
+    ){
+
+        return;
+
+    }
+
+
+    let amount=1;
+
+
+    if(
+        available.length>=2 &&
+        Math.random()<.35
+    ){
+
+        amount=2;
+
+    }
+
+
+    /*
+    Shuffle lanes
+    */
+
+    available.sort(
+        ()=>Math.random()-.5
+    );
+
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const lane=
+            available[i];
+
+
+        const type=
+            carTypes[
+                Math.floor(
+                    Math.random()*
+                    carTypes.length
+                )
+            ];
+
+
+        traffic.push({
+
+            lane:lane,
+
+            x:lanes[lane],
+
+            y:-150-
+
+                Math.random()*120,
+
+            speed:
+                2+
+                Math.random()*3,
+
+            width:58,
+
+            height:112,
+
+            image:type.image,
+
+            brand:type.brand,
+
+            /*
+            Traffic cars also
+            have tiny movement.
+            */
+
+            angle:
+                (Math.random()-.5)*.03
+
+        });
+    }
+}
+
+
+/* ==================================================
+   COINS
+================================================== */
+
+function spawnCoin(){
+
+    const lane=
+        Math.floor(
+            Math.random()*3
+        );
+
+
+    /*
+    Don't put coin directly
+    inside a traffic car.
+    */
+
+    for(
+        const car of traffic
+    ){
+
+        if(
+            car.lane===lane &&
+            car.y<150
+        ){
+
+            return;
+
+        }
+    }
+
+
+    coinObjects.push({
+
+        lane:lane,
+
+        x:lanes[lane],
+
+        y:-30
+
+    });
+}
+
+
+function drawCoin(coin){
+
+    ctx.save();
+
+    ctx.translate(
+        coin.x,
+        coin.y
+    );
+
+    ctx.fillStyle="#ffd21f";
+
+    ctx.shadowColor="#ffd21f";
+
+    ctx.shadowBlur=18;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        0,
+        0,
+        11,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    ctx.shadowBlur=0;
+
+    ctx.fillStyle="#765300";
+
+    ctx.font=
+        "bold 11px Arial";
+
+    ctx.textAlign="center";
+
+    ctx.fillText(
+        "$",
+        0,
+        4
+    );
+
+    ctx.restore();
+}
+
+
+/* ==================================================
+   COLLISION
+================================================== */
+
+function collision(a,b){
+
+    return(
+
+        Math.abs(
+            a.x-b.x
+        )<40
+
+        &&
+
+        Math.abs(
+            a.y-b.y
+        )<82
+
+    );
+}
+
+
+/* ==================================================
+   UPDATE
+================================================== */
+
+function update(dt){
+
+    /*
+    SPEED
+    */
+
+    score+=speed*dt;
+
+    speed+=dt*.12;
+
+    if(speed>20)
+        speed=20;
+
+
+    /*
+    SMOOTH PLAYER MOVEMENT
+    */
+
+    player.x+=
+        (
+            player.targetX-
+            player.x
+        )*
+        Math.min(
+            1,
+            dt*8
+        );
+
+
+    /*
+    SMOOTH TURN
+    */
+
+    player.angle+=
+        (
+            player.targetAngle-
+            player.angle
+        )*
+        Math.min(
+            1,
+            dt*11
+        );
+
+
+    /*
+    STRAIGHTEN AFTER TURN
+    */
+
+    if(
+        Math.abs(
+            player.targetX-
+            player.x
+        )<3
+    ){
+
+        player.targetAngle=0;
+    }
+
+
+    /*
+    TRAFFIC SPAWNING
+    */
+
+    spawnTimer+=dt;
+
+
+    const spawnRate=
+        Math.max(
+            .48,
+            1.08-
+            speed*.025
+        );
+
+
+    if(
+        spawnTimer>
+        spawnRate
+    ){
+
+        spawnTimer=0;
+
+        spawnTraffic();
+    }
+
+
+    /*
+    COINS
+    */
+
+    coinTimer+=dt;
+
+
+    if(
+        coinTimer>1.35
+    ){
+
+        coinTimer=0;
+
+        spawnCoin();
+    }
+
+
+    /*
+    MOVE TRAFFIC
+    */
+
+    for(
+        const car of traffic
+    ){
+
+        car.y+=
+            (
+                speed+
+                car.speed
+            )*
+            45*
+            dt;
+
+    }
+
+
+    /*
+    MOVE COINS
+    */
+
+    for(
+        const coin of coinObjects
+    ){
+
+        coin.y+=
+            speed*
+            45*
+            dt;
+
+    }
+
+
+    /*
+    DELETE OLD TRAFFIC
+    */
+
+    traffic=
+        traffic.filter(
+            car =>
+                car.y<
+                H+170
+        );
+
+
+    coinObjects=
+        coinObjects.filter(
+            coin =>
+                coin.y<
+                H+50
+        );
+
+
+    /*
+    COLLISION
+    */
+
+    for(
+        const car of traffic
+    ){
+
+        if(
+            collision(
+                player,
+                car
+            )
+        ){
+
+            crash();
+
+            return;
+        }
+    }
+
+
+    /*
+    COLLECT COINS
+    */
+
+    for(
+        let i=
+        coinObjects.length-1;
+
+        i>=0;
+
+        i--
+    ){
+
+        const coin=
+            coinObjects[i];
+
+
+        if(
+
+            Math.abs(
+                player.x-
+                coin.x
+            )<35
+
+            &&
+
+            Math.abs(
+                player.y-
+                coin.y
+            )<70
+
+        ){
+
+            coins++;
+
+            score+=100;
+
+            coinObjects.splice(
+                i,
+                1
+            );
+        }
+    }
+
+
+    /*
+    HUD
+    */
+
+    scoreEl.textContent=
+        Math.floor(score);
+
+    coinsEl.textContent=
+        coins;
+
+    speedEl.textContent=
+        Math.floor(
+            speed*13
+        );
+}
+
+
+/* ==================================================
+   DRAW
+================================================== */
+
+function draw(){
+
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    drawRoad();
+
+
+    /*
+    COINS
+    */
+
+    for(
+        const coin of coinObjects
+    ){
+
+        drawCoin(coin);
+
+    }
+
+
+    /*
+    TRAFFIC
+    */
+
+    for(
+        const car of traffic
+    ){
+
+        drawRealCar(
+            car,
+            false
+        );
+
+    }
+
+
+    /*
+    PLAYER
+    */
+
+    drawRealCar(
+        player,
+        true
+    );
+}
+
+
+/* ==================================================
+   CRASH
+================================================== */
+
+function crash(){
+
+    running=false;
+
+
+    menu.classList.remove(
+        "hidden"
+    );
+
+
+    menu.innerHTML=`
+
+        <div class="panel">
+
+            <h1>💥 CRASH</h1>
+
+            <p>
+                Score:
+                <b>${Math.floor(score)}</b>
+            </p>
+
+            <p>
+                Coins:
+                <b>${coins}</b>
+            </p>
+
+            <button onclick="startGame()">
+                RACE AGAIN
+            </button>
+
+        </div>
+
+    `;
+}
+
+
+/* ==================================================
+   GAME LOOP
+================================================== */
+
+function loop(time){
+
+    if(!running)
+        return;
+
+
+    const dt=
+        Math.min(
+            .04,
+            (time-lastTime)/1000
+        );
+
+
+    lastTime=time;
+
+
+    update(dt);
+
+    draw();
+
+
+    requestAnimationFrame(
+        loop
+    );
+}
+
+
+/* ==================================================
+   KEYBOARD
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(
+            e.key==="ArrowLeft" ||
+            e.key.toLowerCase()==="a"
+        ){
+
+            moveLeft();
+
+        }
+
+
+        if(
+            e.key==="ArrowRight" ||
+            e.key.toLowerCase()==="d"
+        ){
+
+            moveRight();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   INITIAL FRAME
+================================================== */
+
+draw();
+
+</script>
+
+</body>
+</html>

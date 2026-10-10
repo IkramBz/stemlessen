@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio van Kerem</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #050816, #101b3d);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #111c44, #182d67);
+            border-bottom: 3px solid #4da6ff;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+            color: #4da6ff;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #d6e7ff;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(77, 166, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: #4da6ff;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #8ac7ff;
+        }
+
+        p {
+            color: #e4eaf5;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        li {
+            background: #17264d;
+            padding: 12px 18px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4da6ff;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 20px;
+            background: #4da6ff;
+            color: #06101f;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #8ac7ff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(77, 166, 255, 0.4);
+        }
+
+        .mod-image {
+            display: block;
+            max-width: 100%;
+            width: 500px;
+            margin: 25px auto 10px;
+            border-radius: 12px;
+            border: 2px solid #4da6ff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background: #050816;
+            color: #8b9bb8;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .button {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🚀 Portfolio van Kerem</h1>
+        <p>Mijn eerste website over Kerbal Space Program!</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>👋 Wie ben ik?</h2>
+
+            <p>
+                Hallo, ik ben Kerem en ik speel Kerbal Space Program 1.
+                Dit is mijn mod die het spel realistischer maakt.
+            </p>
+
+            <p>
+                Kerbal Space Program is een ruimtesimulatiespel waarin je
+                raketten bouwt en je eigen ruimteprogramma runt. Het spel
+                kan behoorlijk moeilijk zijn, omdat je veel moet leren over
+                ruimtevaart en natuurkunde.
+            </p>
+        </section>
+
+        <section>
+            <h2>🛰️ Wat is het spel?</h2>
+
+            <ul>
+                <li>📚 Leerzaam</li>
+                <li>🎯 Geen standaard beloningen</li>
+                <li>🔬 Pure wetenschap</li>
+                <li>🚀 Raketten bouwen en lanceren</li>
+                <li>🌌 De ruimte ontdekken</li>
+            </ul>
+
+            <h3>Mijn mod</h3>
+
+            <p>
+                Mijn mod probeert Kerbal Space Program realistischer te maken.
+                Je kunt hem hieronder downloaden.
+            </p>
+
+            <div class="buttons">
+                <a class="button"
+                   href="https://github.com/clouds-123-droid/DilDal/releases/download/v0.3/DilDal.zip">
+                    ⬇️ Download mijn mod
+                </a>
+            </div>
+
+            <img
+                class="mod-image"
+                src="https://cdn.mos.cms.futurecdn.net/Zr8MfeMGfTBPjgCeSBEkPM-970-80.jpg.webp"
+                alt="Kerbal Space Program">
+        </section>
+
+        <section>
+            <h2>📥 Waar kan ik Kerbal Space Program downloaden?</h2>
+
+            <p>
+                Je kunt Kerbal Space Program vinden via de officiële website.
+            </p>
+
+            <div class="buttons">
+                <a class="button"
+                   href="https://kerbalspaceprogram.com"
+                   target="_blank">
+                    🚀 Naar Kerbal Space Program
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Kerem — Mijn eerste website 🚀</p>
+    </footer>
+
+</body>
+</html>

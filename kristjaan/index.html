@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio van Kristjaan</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(0, 90, 180, 0.14),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(0, 190, 140, 0.10),
+                    transparent 30%
+                ),
+                #07151c;
+
+            color: white;
+            font-family: Arial, sans-serif;
+
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           ACHTERGROND
+        ========================= */
+
+        .background-decoration {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+            z-index: -10;
+
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+
+            border-radius: 50%;
+            filter: blur(65px);
+            opacity: 0.30;
+
+            animation:
+                floatingGlow 10s ease-in-out infinite alternate;
+        }
+
+        .glow1 {
+            width: 350px;
+            height: 350px;
+
+            background: #0052a3;
+
+            top: 5%;
+            left: -100px;
+        }
+
+        .glow2 {
+            width: 300px;
+            height: 300px;
+
+            background: #00b889;
+
+            top: 35%;
+            right: -100px;
+
+            animation-delay: 2s;
+        }
+
+        .glow3 {
+            width: 280px;
+            height: 280px;
+
+            background: #008fa8;
+
+            bottom: 5%;
+            left: 20%;
+
+            animation-delay: 4s;
+        }
+
+        @keyframes floatingGlow {
+
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(60px, -50px) scale(1.2);
+            }
+        }
+
+
+        /* =========================
+           STERREN
+        ========================= */
+
+        .stars {
+            position: absolute;
+            inset: 0;
+        }
+
+        .star {
+            position: absolute;
+
+            width: 4px;
+            height: 4px;
+
+            background: #00ffcc;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 10px #00ffcc;
+
+            animation:
+                twinkle 3s infinite ease-in-out;
+        }
+
+        .star:nth-child(1) {
+            top: 8%;
+            left: 15%;
+        }
+
+        .star:nth-child(2) {
+            top: 18%;
+            left: 82%;
+            animation-delay: .5s;
+        }
+
+        .star:nth-child(3) {
+            top: 31%;
+            left: 7%;
+            animation-delay: 1s;
+        }
+
+        .star:nth-child(4) {
+            top: 43%;
+            left: 91%;
+            animation-delay: 1.5s;
+        }
+
+        .star:nth-child(5) {
+            top: 57%;
+            left: 12%;
+            animation-delay: 2s;
+        }
+
+        .star:nth-child(6) {
+            top: 68%;
+            left: 87%;
+            animation-delay: 2.5s;
+        }
+
+        .star:nth-child(7) {
+            top: 79%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .star:nth-child(8) {
+            top: 91%;
+            left: 75%;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: .2;
+                transform: scale(.7);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+
+        /* =========================
+           VERFSPETTERS
+        ========================= */
+
+        .paint {
+            position: fixed;
+
+            z-index: -4;
+
+            pointer-events: none;
+
+            background: linear-gradient(
+                135deg,
+                #004b91,
+                #007fa3,
+                #00a982,
+                #19d477
+            );
+
+            opacity: 0.65;
+
+            filter: blur(1px);
+
+            border-radius:
+                60% 40% 55% 45% /
+                45% 60% 40% 55%;
+
+            box-shadow:
+                0 0 25px rgba(0, 190, 140, .25);
+        }
+
+        .paint1 {
+            width: 170px;
+            height: 220px;
+            left: -90px;
+            top: 5%;
+            animation: move1 9s ease-in-out infinite;
+        }
+
+        .paint2 {
+            width: 110px;
+            height: 150px;
+            left: -55px;
+            top: 25%;
+            animation: move2 12s ease-in-out infinite;
+        }
+
+        .paint3 {
+            width: 200px;
+            height: 180px;
+            left: -120px;
+            top: 45%;
+            animation: move3 10s ease-in-out infinite;
+        }
+
+        .paint4 {
+            width: 120px;
+            height: 190px;
+            left: -60px;
+            top: 65%;
+            animation: move4 14s ease-in-out infinite;
+        }
+
+        .paint5 {
+            width: 180px;
+            height: 160px;
+            left: -100px;
+            top: 85%;
+            animation: move5 11s ease-in-out infinite;
+        }
+
+        .paint6 {
+            width: 180px;
+            height: 210px;
+            right: -95px;
+            top: 10%;
+            animation: move6 11s ease-in-out infinite;
+        }
+
+        .paint7 {
+            width: 120px;
+            height: 170px;
+            right: -60px;
+            top: 30%;
+            animation: move7 13s ease-in-out infinite;
+        }
+
+        .paint8 {
+            width: 200px;
+            height: 180px;
+            right: -110px;
+            top: 50%;
+            animation: move8 9s ease-in-out infinite;
+        }
+
+        .paint9 {
+            width: 130px;
+            height: 200px;
+            right: -70px;
+            top: 70%;
+            animation: move9 15s ease-in-out infinite;
+        }
+
+        .paint10 {
+            width: 180px;
+            height: 170px;
+            right: -100px;
+            top: 90%;
+            animation: move10 10s ease-in-out infinite;
+        }
+
+
+        /* =========================
+           BEWEGINGEN
+        ========================= */
+
+        @keyframes move1 {
+            0% {
+                transform: translateY(-120px) rotate(-15deg);
+            }
+
+            50% {
+                transform: translateY(400px) rotate(25deg);
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(-20deg);
+            }
+        }
+
+        @keyframes move2 {
+            0% {
+                transform: translateY(300px) rotate(20deg);
+            }
+
+            50% {
+                transform: translateY(-350px) rotate(-25deg);
+            }
+
+            100% {
+                transform: translateY(250px) rotate(15deg);
+            }
+        }
+
+        @keyframes move3 {
+            0% {
+                transform: translateY(-300px) rotate(10deg);
+            }
+
+            50% {
+                transform: translateY(500px) rotate(-30deg);
+            }
+
+            100% {
+                transform: translateY(-250px) rotate(20deg);
+            }
+        }
+
+        @keyframes move4 {
+            0% {
+                transform: translateY(350px) rotate(-20deg);
+            }
+
+            50% {
+                transform: translateY(-450px) rotate(30deg);
+            }
+
+            100% {
+                transform: translateY(300px) rotate(-15deg);
+            }
+        }
+
+        @keyframes move5 {
+            0% {
+                transform: translateY(-400px) rotate(25deg);
+            }
+
+            50% {
+                transform: translateY(300px) rotate(-20deg);
+            }
+
+            100% {
+                transform: translateY(-350px) rotate(15deg);
+            }
+        }
+
+        @keyframes move6 {
+            0% {
+                transform: translateY(400px) rotate(20deg);
+            }
+
+            50% {
+                transform: translateY(-350px) rotate(-30deg);
+            }
+
+            100% {
+                transform: translateY(400px) rotate(15deg);
+            }
+        }
+
+        @keyframes move7 {
+            0% {
+                transform: translateY(-350px) rotate(-20deg);
+            }
+
+            50% {
+                transform: translateY(450px) rotate(25deg);
+            }
+
+            100% {
+                transform: translateY(-300px) rotate(-15deg);
+            }
+        }
+
+        @keyframes move8 {
+            0% {
+                transform: translateY(300px) rotate(15deg);
+            }
+
+            50% {
+                transform: translateY(-500px) rotate(-25deg);
+            }
+
+            100% {
+                transform: translateY(300px) rotate(20deg);
+            }
+        }
+
+        @keyframes move9 {
+            0% {
+                transform: translateY(-400px) rotate(25deg);
+            }
+
+            50% {
+                transform: translateY(400px) rotate(-30deg);
+            }
+
+            100% {
+                transform: translateY(-350px) rotate(20deg);
+            }
+        }
+
+        @keyframes move10 {
+            0% {
+                transform: translateY(350px) rotate(-20deg);
+            }
+
+            50% {
+                transform: translateY(-450px) rotate(30deg);
+            }
+
+            100% {
+                transform: translateY(350px) rotate(-20deg);
+            }
+        }
+
+
+        .paint::before,
+        .paint::after {
+            content: "";
+
+            position: absolute;
+
+            background: inherit;
+
+            border-radius: 50%;
+        }
+
+        .paint::before {
+            width: 55px;
+            height: 55px;
+
+            left: 90px;
+            top: 20px;
+        }
+
+        .paint::after {
+            width: 35px;
+            height: 35px;
+
+            left: 130px;
+            bottom: 15px;
+        }
+
+
+        /* =========================
+           NAVIGATIE
+        ========================= */
+
+        nav {
+            height: 80px;
+
+            background: linear-gradient(
+                90deg,
+                #062b4d,
+                #004b82,
+                #007d91,
+                #009b78
+            );
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 10px 20px;
+
+            position: relative;
+
+            z-index: 1000;
+
+            border-bottom:
+                1px solid rgba(0, 255, 204, .35);
+
+            box-shadow:
+                0 4px 25px rgba(0, 0, 0, .4);
+        }
+
+        nav ul {
+            list-style: none;
+
+            margin: 0;
+            padding: 0;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 6px;
+
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+
+            padding: 9px 12px;
+
+            border-radius: 10px;
+
+            transition: all .3s ease;
+
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background: #00ffcc;
+
+            color: #062b4d;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 15px rgba(0, 255, 204, .6);
+        }
+
+        nav a.active {
+            background: #00ffcc;
+
+            color: #062b4d;
+
+            box-shadow:
+                0 0 15px rgba(0, 255, 204, .55);
+        }
+
+
+        /* =========================
+           PAGINA'S
+        ========================= */
+
+        main {
+            height: calc(100vh - 80px);
+
+            position: relative;
+        }
+
+        .page {
+            display: none;
+
+            width: 100%;
+            height: 100%;
+
+            padding: 35px 20px;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page.active {
+            display: flex;
+
+            animation:
+                pageIn .45s ease;
+        }
+
+        @keyframes pageIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(.97)
+                    translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+        }
+
+
+        /* =========================
+           KAART
+        ========================= */
+
+        .card {
+            position: relative;
+
+            width: min(1000px, 95%);
+
+            max-height: calc(100vh - 140px);
+
+            overflow: hidden;
+
+            padding: 45px;
+
+            border-radius: 25px;
+
+            background: linear-gradient(
+                135deg,
+                #082b48 0%,
+                #064f78 35%,
+                #087f91 65%,
+                #07966f 100%
+            );
+
+            border:
+                1px solid rgba(0, 255, 204, .35);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, .4),
+                0 0 35px rgba(0, 255, 204, .10);
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: -80px;
+            top: -80px;
+
+            border-radius: 50%;
+
+            background: #00ffcc;
+
+            opacity: .08;
+
+            box-shadow:
+                0 0 60px #00ffcc;
+        }
+
+        .card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 4px;
+
+            bottom: 15px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #00ffcc,
+                transparent
+            );
+
+            box-shadow:
+                0 0 15px #00ffcc;
+        }
+
+
+        /* =========================
+           HOME
+        ========================= */
+
+        .home-card {
+            min-height: 420px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(0, 220, 190, .12),
+                    transparent 45%
+                ),
+                linear-gradient(
+                    135deg,
+                    #062b4d,
+                    #07527d,
+                    #078596,
+                    #079b72
+                );
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+
+            font-size: 3.5rem;
+
+            margin: 0 0 15px;
+
+            color: #00ffcc;
+
+            text-shadow:
+                0 0 12px rgba(0, 255, 204, .5);
+        }
+
+        h2 {
+            font-family: Arial, sans-serif;
+
+            color: #00ffcc;
+
+            font-size: 2.2rem;
+
+            border-bottom:
+                2px solid #00ffcc;
+
+            padding-bottom: 10px;
+
+            margin-top: 0;
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 0 10px rgba(0, 255, 204, .3);
+        }
+
+        p,
+        li {
+            font-family: Arial, sans-serif;
+
+            font-size: 1.1rem;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           ALLE LIJSTEN MET BOLLETJES
+        ========================= */
+
+        ul,
+        ol {
+            padding-left: 25px;
+            list-style-type: disc;
+        }
+
+        li {
+            margin: 12px 0;
+
+            transition:
+                transform .2s ease,
+                color .2s ease;
+        }
+
+        li:hover {
+            transform: translateX(8px);
+
+            color: #00ffcc;
+        }
+
+        li::marker {
+            color: #00ffcc;
+
+            font-weight: bold;
+
+            font-size: 1.1em;
+        }
+
+
+        /* =========================
+           AFBEELDINGEN
+        ========================= */
+
+        img {
+            display: block;
+
+            width: 350px;
+
+            max-width: 100%;
+
+            max-height: 250px;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+
+            margin: 20px auto 0;
+
+            border:
+                3px solid #00ffcc;
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, .4),
+                0 0 15px rgba(0, 255, 204, .15);
+
+            transition: all .35s ease;
+        }
+
+        img:hover {
+            transform:
+                scale(1.04)
+                rotate(1deg);
+
+            box-shadow:
+                0 10px 30px rgba(0, 255, 204, .4);
+        }
+
+
+        /* =========================
+           HOME KNOPPEN
+        ========================= */
+
+        .home-buttons {
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 25px;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+        }
+
+        .home-button {
+            border:
+                2px solid #00ffcc;
+
+            background:
+                rgba(0, 255, 204, .08);
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: .3s ease;
+        }
+
+        .home-button:hover {
+            background: #00ffcc;
+
+            color: #062b4d;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 20px rgba(0, 255, 204, .6);
+        }
+
+
+        /* =========================
+           FAVORIETE KLEUR
+        ========================= */
+
+        .pink-card {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 420px;
+        }
+
+        .pink-color {
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #ffb6d9,
+                    #ff69b4 45%,
+                    #e83e8c 75%,
+                    #c2185b
+                );
+
+            border:
+                5px solid #ffb6d9;
+
+            box-shadow:
+                0 0 25px rgba(255, 105, 180, .8),
+                0 0 60px rgba(255, 105, 180, .45);
+
+            animation:
+                pinkPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pinkPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+
+                box-shadow:
+                    0 0 25px rgba(255, 105, 180, .8),
+                    0 0 60px rgba(255, 105, 180, .45);
+            }
+
+            50% {
+                transform: scale(1.08);
+
+                box-shadow:
+                    0 0 40px rgba(255, 105, 180, 1),
+                    0 0 90px rgba(255, 105, 180, .6);
+            }
+        }
+
+
+        /* =========================
+           COPYRIGHT
+        ========================= */
+
+        .copyright {
+            position: absolute;
+
+            bottom: 8px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-family: Arial, sans-serif;
+
+            font-size: .8rem;
+
+            opacity: .6;
+        }
+
+
+        /* =========================
+           MOBIEL
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                height: 100px;
+            }
+
+            main {
+                height: calc(100vh - 100px);
+            }
+
+            nav a {
+                font-size: .75rem;
+
+                padding: 7px 9px;
+            }
+
+            .page {
+                padding: 20px 10px;
+            }
+
+            .card {
+                width: 96%;
+
+                padding: 30px 25px;
+
+                max-height: calc(100vh - 125px);
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                height: 120px;
+
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 120px);
+            }
+
+            nav ul {
+                gap: 3px;
+            }
+
+            nav a {
+                font-size: .68rem;
+
+                padding: 6px 7px;
+            }
+
+            .card {
+                padding: 25px 18px;
+
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            p,
+            li {
+                font-size: 1rem;
+            }
+
+            img {
+                max-height: 180px;
+            }
+
+            .paint {
+                display: none;
+            }
+
+            .glow {
+                opacity: .18;
+            }
+
+            .pink-color {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         ACHTERGROND
+    ========================= -->
+
+    <div class="background-decoration">
+
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+        <div class="glow glow3"></div>
+
+        <div class="stars">
+
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         VERFSPETTERS
+    ========================= -->
+
+    <div class="paint paint1"></div>
+    <div class="paint paint2"></div>
+    <div class="paint paint3"></div>
+    <div class="paint paint4"></div>
+    <div class="paint paint5"></div>
+
+    <div class="paint paint6"></div>
+    <div class="paint paint7"></div>
+    <div class="paint paint8"></div>
+    <div class="paint paint9"></div>
+    <div class="paint paint10"></div>
+
+
+    <!-- =========================
+         NAVIGATIE
+    ========================= -->
+
+    <nav>
+
+        <ul>
+
+            <li>
+                <a href="#" class="tab active" data-page="home">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="wie-ben-ik">
+                    Wie ben ik?
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="hobbies">
+                    Hobby's
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="landen">
+                    Landen
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="vakanties">
+                    Vakanties
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="games">
+                    Games
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="gerechten">
+                    Gerechten
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="basketballers">
+                    Basketballers
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="basketbalteam">
+                    Basketbalteam
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="voetbalteam">
+                    Voetbalteam
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="tab" data-page="kleur">
+                    Favoriete kleur
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         PAGINA'S
+    ========================= -->
+
+    <main>
+
+
+        <!-- HOME -->
+
+        <div class="page active" id="home">
+
+            <div class="card home-card">
+
+                <h1>
+                    Hallo, ik ben Kristjaan
+                </h1>
+
+                <p>
+                    Welkom op mijn persoonlijke portfolio!
+                </p>
+
+                <p>
+                    Basketbal • Games • Reizen • Eten
+                </p>
+
+                <div class="home-buttons">
+
+                    <button
+                        class="home-button"
+                        onclick="openTab('wie-ben-ik')">
+
+                        Leer mij kennen
+
+                    </button>
+
+                    <button
+                        class="home-button"
+                        onclick="openTab('hobbies')">
+
+                        Mijn hobby's
+
+                    </button>
+
+                </div>
+
+                <div class="copyright">
+                    © 2026 Kristjaan - Mijn Portfolio
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WIE BEN IK -->
+
+        <div class="page" id="wie-ben-ik">
+
+            <div class="card">
+
+                <h2>
+                    Wie ben ik?
+                </h2>
+
+                <p>
+                    Ik ben een basketballer bij de Antwerp Giants.
+                    Ik speel graag 2K.
+                    Ik verzamel ook Pokémonkaarten.
+                    Ik speel super graag basketbal.
+                    Ik ben heel competitief.
+                    Ik hou ook van mijn gezin.
+                    En ik zit in het eerste middelbaar op de school Sint-Rita.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOBBY'S -->
+
+        <div class="page" id="hobbies">
+
+            <div class="card">
+
+                <h2>
+                    Mijn hobby's
+                </h2>
+
+                <ul>
+
+                    <li>Basketbal</li>
+
+                    <li>Sporten met mijn papa</li>
+
+                    <li>Gamen</li>
+
+                    <li>Pokémonkaarten verzamelen</li>
+
+                </ul>
+
+                <img
+                    src="https://cdn.nba.com/manage/2022/08/nba-ball-general-view-iso.jpg"
+                    alt="Basketbal">
+
+            </div>
+
+        </div>
+
+
+        <!-- LANDEN -->
+
+        <div class="page" id="landen">
+
+            <div class="card">
+
+                <h2>
+                    Mijn favoriete landen
+                </h2>
+
+                <ul>
+
+                    <li>Egypte</li>
+
+                    <li>Amerika</li>
+
+                    <li>Brazilië</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- VAKANTIES -->
+
+        <div class="page" id="vakanties">
+
+            <div class="card">
+
+                <h2>
+                    Naar welke landen ben ik al op vakantie geweest?
+                </h2>
+
+                <ul>
+
+                    <li>Marokko</li>
+
+                    <li>Frankrijk</li>
+
+                    <li>Nederland</li>
+
+                    <li>Egypte</li>
+
+                    <li>Italië</li>
+
+                    <li>Spanje</li>
+
+                    <li>Jordanië</li>
+
+                    <li>Engeland</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- GAMES -->
+
+        <div class="page" id="games">
+
+            <div class="card">
+
+                <h2>
+                    Mijn favoriete games
+                </h2>
+
+                <ul>
+
+                    <li>NBA 2K26</li>
+
+                    <li>Call of Duty</li>
+
+                    <li>FIFA</li>
+
+                </ul>
+
+                <img
+                    src="https://tse1.mm.bing.net/th/id/OIP.01azyKj4VNNyHlv7QwGWCwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Games">
+
+            </div>
+
+        </div>
+
+
+        <!-- GERECHTEN -->
+
+        <div class="page" id="gerechten">
+
+            <div class="card">
+
+                <h2>
+                    Mijn favoriete gerechten
+                </h2>
+
+                <ul>
+
+                    <li>Sushi</li>
+
+                    <li>Frietjes</li>
+
+                    <li>Lapkous</li>
+
+                </ul>
+
+                <img
+                    src="https://www.freshfarms.com/wp-content/uploads/2023/03/Exploring-the-Different-Types-of-Sushi-for-Flavorful-and-Unique-Experiences.jpg"
+                    alt="Sushi">
+
+            </div>
+
+        </div>
+
+
+        <!-- BASKETBALLERS -->
+
+        <div class="page" id="basketballers">
+
+            <div class="card">
+
+                <h2>
+                    Mijn favoriete basketballers
+                </h2>
+
+                <ul>
+
+                    <li>Anthony Edwards</li>
+
+                    <li>LaMelo Ball</li>
+
+                    <li>Tyrese Haliburton</li>
+
+                </ul>
+
+                <img
+                    src="https://tse1.mm.bing.net/th/id/OIP.tjoH3knS9AqPbMBhi7xgWgHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                    alt="Basketballers">
+
+            </div>
+
+        </div>
+
+
+        <!-- BASKETBALTEAM -->
+
+        <div class="page" id="basketbalteam">
+
+            <div class="card">
+
+                <h2>
+                    Mijn favoriete basketbalteam
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Minnesota Timberwolves
+                    </li>
+
+                </ul>
+
+                <img
+                    src="https://news.sportslogos.net/wp-content/uploads/2026/03/minnesota-timberwolves-new-logo-leak-2026-27.jpg"
+                    alt="Minnesota Timberwolves">
+
+            </div>
+
+        </div>
+
+
+        <!-- VOETBALTEAM -->
+
+        <div class="page" id="voetbalteam">
+
+            <div class="card">
+
+                <h2>
+                    Mijn favoriete voetbalteam
+                </h2>
+
+                <ul>
+
+                    <li>
+                        Antwerp
+                    </li>
+
+                </ul>
+
+                <img
+                    src="https://images.seeklogo.com/logo-png/31/1/fc-antwerp-logo-png_seeklogo-313263.png"
+                    alt="Antwerp">
+
+            </div>
+
+        </div>
+
+
+        <!-- FAVORIETE KLEUR -->
+
+        <div class="page" id="kleur">
+
+            <div class="card pink-card">
+
+                <div class="pink-color"></div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const tabs =
+            document.querySelectorAll(".tab");
+
+        const pages =
+            document.querySelectorAll(".page");
+
+
+        function openTab(pageId) {
+
+            pages.forEach(page => {
+
+                page.classList.remove("active");
+
+            });
+
+
+            tabs.forEach(tab => {
+
+                tab.classList.remove("active");
+
+            });
+
+
+            const selectedPage =
+                document.getElementById(pageId);
+
+            if (selectedPage) {
+
+                selectedPage.classList.add("active");
+
+            }
+
+
+            tabs.forEach(tab => {
+
+                if (tab.dataset.page === pageId) {
+
+                    tab.classList.add("active");
+
+                }
+
+            });
+
+        }
+
+
+        tabs.forEach(tab => {
+
+            tab.addEventListener("click", function(event) {
+
+                event.preventDefault();
+
+                const pageId =
+                    this.dataset.page;
+
+                openTab(pageId);
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

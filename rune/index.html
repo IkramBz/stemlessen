@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio van Rune</title>
+
+    <style>
+        body {
+            /*
+             * REGENBOOG + DIAMANT TEXTUUR
+             *
+             * De regenboog blijft zichtbaar.
+             * De extra gradients maken een glanzend,
+             * diamantachtig patroon.
+             */
+            background:
+                /* Diamantachtige fonkelingen */
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(255, 255, 255, 0.95) 0px,
+                    rgba(255, 255, 255, 0.5) 2px,
+                    rgba(255, 255, 255, 0.15) 5px,
+                    transparent 10px
+                ),
+
+                radial-gradient(
+                    circle at 70% 20%,
+                    rgba(255, 255, 255, 0.9) 0px,
+                    rgba(255, 255, 255, 0.4) 2px,
+                    rgba(255, 255, 255, 0.1) 5px,
+                    transparent 10px
+                ),
+
+                radial-gradient(
+                    circle at 40% 80%,
+                    rgba(255, 255, 255, 0.95) 0px,
+                    rgba(255, 255, 255, 0.45) 2px,
+                    rgba(255, 255, 255, 0.1) 6px,
+                    transparent 11px
+                ),
+
+                /* Schuine diamantvlakken */
+                linear-gradient(
+                    45deg,
+                    transparent 45%,
+                    rgba(255, 255, 255, 0.22) 48%,
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0.22) 52%,
+                    transparent 55%
+                ),
+
+                linear-gradient(
+                    -45deg,
+                    transparent 45%,
+                    rgba(255, 255, 255, 0.18) 48%,
+                    rgba(255, 255, 255, 0.45) 50%,
+                    rgba(255, 255, 255, 0.18) 52%,
+                    transparent 55%
+                ),
+
+                /* Regenboog */
+                linear-gradient(
+                    135deg,
+                    #ff0000,
+                    #ff8c00,
+                    #ffff00,
+                    #00cc44,
+                    #008cff,
+                    #4b0082,
+                    #9400d3
+                );
+
+            background-size:
+                180px 180px,
+                230px 230px,
+                200px 200px,
+                45px 45px,
+                45px 45px,
+                400% 400%;
+
+            background-attachment: fixed;
+
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #222;
+
+            animation: regenboog 12s ease infinite;
+        }
+
+        /* De regenboog beweegt langzaam */
+        @keyframes regenboog {
+            0% {
+                background-position:
+                    0 0,
+                    80px 30px,
+                    40px 100px,
+                    0 0,
+                    20px 20px,
+                    0% 50%;
+            }
+
+            50% {
+                background-position:
+                    100px 80px,
+                    20px 120px,
+                    100px 20px,
+                    20px 20px,
+                    0 0,
+                    100% 50%;
+            }
+
+            100% {
+                background-position:
+                    0 0,
+                    80px 30px,
+                    40px 100px,
+                    0 0,
+                    20px 20px,
+                    0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+
+        h2 {
+            color: #0099cc;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        ul {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        a {
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .kaart {
+            background-color: rgb(255, 94, 31);
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 15px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .emoji {
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Hoi, ik ben Rune 👋</h1>
+
+        <p>
+            Welkom op mijn eerste website!
+        </p>
+
+        <h2>Wie ben ik?</h2>
+
+        <p>
+            Ik ben Rune en ik hou heel veel van gamen.
+            Ik kijk ook YouTube en ik speel veel Roblox.
+            Ik woon in België.
+        </p>
+
+        <h2>Mijn hobby's 🎮</h2>
+
+        <p>
+            Gamen, mijn favoriete games of apps zijn:
+        </p>
+
+        <ul>
+            <li>Roblox</li>
+            <li>YouTube</li>
+            <li>EverMerge</li>
+            <li>Star Merge</li>
+            <li>Merge Inn</li>
+            <li>Minecraft</li>
+            <li>Mario Kart 8 Deluxe</li>
+            <li>Longleaf Valley</li>
+        </ul>
+
+        <h2>Website naar YouTube 📺</h2>
+
+        <p>
+            Klik hieronder om naar YouTube te gaan:
+        </p>
+
+        <a href="https://www.youtube.com/" target="_blank">
+            Ga naar YouTube
+        </a>
+
+        <br><br>
+
+        <img
+            src="https://tse3.mm.bing.net/th/id/OIP.yEMwTWIlGDaRDu2Y7j5Q3gHaFJ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="Afbeelding">
+
+        <h2>Wat wil ik later graag bereiken? ⭐</h2>
+
+        <p>
+            Ik wil later een YouTuber worden en mega populair worden!
+        </p>
+
+        <h2>Mijn favoriete games 🎮</h2>
+
+        <p>
+            1. Roblox<br>
+            2. Minecraft<br>
+            3. Merge Shop op Roblox
+        </p>
+
+        <p class="emoji">
+            😎😎😎😎😎😎😎😎😎😎
+        </p>
+
+        <img
+            src="https://i.ytimg.com/vi/lYCKUyBLBaM/maxresdefault.jpg"
+            alt="Afbeelding van een game">
+
+        <h2>Wat vind ik nog leuk? 😊</h2>
+
+        <p>
+            Ik vind squishys ook leuk en ook speelgoed.
+            Mijn favoriete personage uit Super Mario is Yoshi.
+        </p>
+
+        <div class="kaart">
+            Ik ben ook heel cool trouwens 😎
+        </div>
+
+        <p>
+            Ik vind squishys ook heel leuk, vooral Minecraft-squishys.
+            Eigenlijk alle squishys. Leuk hé?
+        </p>
+
+        <h2>Leuke weetjes 🤓</h2>
+
+        <p>
+            Wist je dat er ongeveer 10,8 miljoen mensen Roblox spelen
+            en dat er ongeveer 212,32 miljoen mensen Minecraft spelen?
+        </p>
+
+    </div>
+
+</body>
+
+</html>

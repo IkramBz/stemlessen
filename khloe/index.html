@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio van Khloé</title>
+
+    <style>
+
+        /* =========================
+           ALGEMEEN
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff3b5;
+            color: #4f5360;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           BEWEGENDE ACHTERGROND
+        ========================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.30;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .bubble1 {
+            width: 100px;
+            height: 100px;
+            background-color: #f28b7b;
+            left: 5%;
+            top: 20%;
+            animation-duration: 8s;
+        }
+
+        .bubble2 {
+            width: 70px;
+            height: 70px;
+            background-color: #3d9bd2;
+            right: 8%;
+            top: 35%;
+            animation-duration: 11s;
+        }
+
+        .bubble3 {
+            width: 120px;
+            height: 120px;
+            background-color: #ffe99a;
+            left: 75%;
+            top: 75%;
+            animation-duration: 9s;
+        }
+
+        .bubble4 {
+            width: 60px;
+            height: 60px;
+            background-color: #68734f;
+            left: 15%;
+            top: 80%;
+            animation-duration: 12s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-40px) rotate(15deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+
+        /* Sterretjes */
+
+        .star {
+            position: absolute;
+            color: #f28b7b;
+            font-size: 25px;
+            animation: sparkle 3s infinite ease-in-out;
+        }
+
+        .star1 {
+            left: 10%;
+            top: 10%;
+        }
+
+        .star2 {
+            left: 85%;
+            top: 15%;
+            animation-delay: 1s;
+        }
+
+        .star3 {
+            left: 90%;
+            top: 65%;
+            animation-delay: 2s;
+        }
+
+        .star4 {
+            left: 5%;
+            top: 60%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.4) rotate(20deg);
+            }
+        }
+
+
+        /* Golfjes */
+
+        .wave {
+            position: absolute;
+            font-size: 35px;
+            color: #3d9bd2;
+            animation: waveMove 5s infinite ease-in-out;
+        }
+
+        .wave1 {
+            left: 2%;
+            top: 45%;
+        }
+
+        .wave2 {
+            right: 2%;
+            top: 85%;
+            animation-delay: 2s;
+        }
+
+        @keyframes waveMove {
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(25px);
+            }
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background-color: #f28b7b;
+
+            padding: 22px 35px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-bottom: 1px solid #e87868;
+
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .menu a:hover {
+            color: #fff3b5;
+        }
+
+
+        /* Quiz knop */
+
+        .quiz-button {
+            background-color: #fff3b5;
+            color: #e87868 !important;
+
+            padding: 10px 17px;
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .quiz-button:hover {
+            background-color: white;
+            color: #287fac !important;
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           HOMEPAGE
+        ========================= */
+
+        .hero {
+            min-height: 85vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            background-color: rgba(255, 243, 181, 0.90);
+        }
+
+        .hero h1 {
+            font-size: 65px;
+            margin: 0;
+
+            color: #287fac;
+
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #e87868;
+            margin: 15px 0 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            padding: 14px 30px;
+
+            background-color: #f28b7b;
+            color: white;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            border-radius: 30px;
+
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            background-color: #287fac;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           SECTIES
+        ========================= */
+
+        section {
+            min-height: 100vh;
+
+            padding: 100px 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            max-width: 850px;
+            width: 100%;
+
+            background-color: rgba(255, 253, 242, 0.96);
+
+            padding: 45px;
+
+            border-radius: 20px;
+
+            border: 2px solid #f28b7b;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .coral-section {
+            background-color: rgba(255, 212, 202, 0.90);
+        }
+
+        h2 {
+            color: #287fac;
+            font-size: 35px;
+
+            border-bottom: 3px solid #f28b7b;
+
+            padding-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        .highlight {
+            color: #287fac;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FOTO'S
+        ========================= */
+
+        img {
+            display: block;
+
+            margin: 30px auto;
+
+            max-width: 100%;
+
+            border-radius: 18px;
+
+            border: 4px solid #f28b7b;
+
+            transition: 0.4s;
+        }
+
+        img:hover {
+            transform: scale(1.03);
+        }
+
+
+        /* =========================
+           FAVORIETE KLEUREN
+        ========================= */
+
+        .color-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        .color {
+            padding: 18px 22px;
+
+            border-radius: 14px;
+
+            font-weight: bold;
+
+            min-width: 130px;
+
+            text-align: center;
+
+            transition: 0.3s;
+        }
+
+        .color:hover {
+            transform: translateY(-8px);
+        }
+
+        .butter-yellow {
+            background-color: #ffe99a;
+            color: #806b16;
+        }
+
+        .greek-blue {
+            background-color: #3d9bd2;
+            color: white;
+        }
+
+        .coral {
+            background-color: #f28b7b;
+            color: white;
+        }
+
+        .baby-pink {
+            background-color: #f6c6d7;
+            color: #8c5265;
+        }
+
+        .army-green {
+            background-color: #68734f;
+            color: white;
+        }
+
+
+        /* =========================
+           QUIZ POP-UP
+        ========================= */
+
+        .quiz-overlay {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background-color: rgba(60, 50, 55, 0.75);
+
+            z-index: 9999;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .quiz-overlay.active {
+            display: flex;
+        }
+
+        .quiz-box {
+            position: relative;
+
+            width: 100%;
+            max-width: 650px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background-color: #fffdf2;
+
+            border-radius: 25px;
+
+            padding: 40px;
+
+            border: 5px solid #f28b7b;
+
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+
+            animation: quizAppear 0.4s ease;
+        }
+
+        @keyframes quizAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close-quiz {
+            position: absolute;
+
+            right: 20px;
+            top: 15px;
+
+            width: 40px;
+            height: 40px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background-color: #f28b7b;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .close-quiz:hover {
+            background-color: #287fac;
+
+            transform: rotate(90deg);
+        }
+
+        .quiz-title {
+            text-align: center;
+
+            color: #287fac;
+
+            font-size: 35px;
+
+            margin-top: 5px;
+        }
+
+        .quiz-subtitle {
+            text-align: center;
+
+            color: #e87868;
+
+            margin-bottom: 30px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+
+            padding: 20px;
+
+            background-color: #fff3b5;
+
+            border-radius: 15px;
+        }
+
+        .question h3 {
+            color: #287fac;
+
+            margin-top: 0;
+        }
+
+        .answer {
+            display: block;
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin: 8px 0;
+
+            border: 2px solid #f28b7b;
+
+            border-radius: 12px;
+
+            background-color: white;
+
+            color: #4f5360;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .answer:hover {
+            background-color: #ffd4ca;
+            transform: translateX(4px);
+        }
+
+        .answer.correct {
+            background-color: #b9d9a8;
+            border-color: #68734f;
+        }
+
+        .answer.wrong {
+            background-color: #f6c6d7;
+            border-color: #e87868;
+        }
+
+        .quiz-result {
+            text-align: center;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: #287fac;
+
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            background-color: #f28b7b;
+
+            color: white;
+
+            padding: 25px;
+        }
+
+
+        /* =========================
+           MOBIEL
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 19px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .quiz-box {
+                padding: 25px;
+            }
+
+            .quiz-title {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BEWEGENDE ACHTERGROND
+    ========================= -->
+
+    <div class="background">
+
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+        <div class="bubble bubble4"></div>
+
+        <div class="star star1">✦</div>
+        <div class="star star2">✦</div>
+        <div class="star star3">✧</div>
+        <div class="star star4">✦</div>
+
+        <div class="wave wave1">〰️</div>
+        <div class="wave wave2">〰️</div>
+
+    </div>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav>
+
+        <div class="logo">
+            KHLOÉ
+        </div>
+
+        <div class="menu">
+
+            <a href="#home">Home</a>
+
+            <a href="#wiebenik">
+                Wie ben ik?
+            </a>
+
+            <a href="#hobby">
+                Hobby's
+            </a>
+
+            <a href="#vrienden">
+                Vrienden
+            </a>
+
+            <a href="#familie">
+                Reizen
+            </a>
+
+            <a href="#eten">
+                Favo eten
+            </a>
+
+            <a href="#kleuren">
+                Kleuren
+            </a>
+
+            <!-- QUIZ -->
+            <a class="quiz-button" onclick="openQuiz()">
+                ✨ Quiz
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HOME
+    ========================= -->
+
+    <section class="hero" id="home">
+
+        <h1>
+            Heyy, ik ben Khloé 💛
+        </h1>
+
+        <p>
+            Welkom Baddiess!!! ☀️🪸
+        </p>
+
+        <a href="#wiebenik" class="hero-button">
+            Ontdek meer ↓
+        </a>
+
+    </section>
+
+
+    <!-- =========================
+         WIE BEN IK
+    ========================= -->
+
+    <section id="wiebenik">
+
+        <div class="content">
+
+            <h2>
+                Wie ben ik? ☀️
+            </h2>
+
+            <p>
+                Heeyyy, ik ben
+                <span class="highlight">
+                    Khloé
+                </span>
+                en ik ben
+                <span class="highlight">
+                    13 jaar
+                </span>.
+            </p>
+
+            <p>
+                Ik verjaar op
+                <span class="highlight">
+                    7 februari
+                </span>
+                en ik zit op
+                <span class="highlight">
+                    Sint-Rita
+                </span>.
+            </p>
+
+            <p>
+                Ik hou echt van
+                <span class="highlight">
+                    zomerse kleuren
+                </span>
+                en een leuke summer vibe! ☀️🌊
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOBBY'S
+    ========================= -->
+
+    <section class="coral-section" id="hobby">
+
+        <div class="content">
+
+            <h2>
+                Hobby's 💃🌊
+            </h2>
+
+            <ul>
+
+                <li>
+                    Ik
+                    <span class="highlight">
+                        dans
+                    </span>
+                    al heel mijn leven en dans is echt mijn grootste hobby.
+                </li>
+
+                <li>
+                    Ik doe
+                    <span class="highlight">
+                        wedstrijden
+                    </span>
+                    en
+                    <span class="highlight">
+                        optredens
+                    </span>.
+                </li>
+
+                <li>
+                    Ik
+                    <span class="highlight">
+                        surf
+                    </span>
+                    heel graag.
+                </li>
+
+                <li>
+                    Ik hou van
+                    <span class="highlight">
+                        bakken en koken
+                    </span>.
+                </li>
+
+                <li>
+                    Ik ben graag
+                    <span class="highlight">
+                        creatief
+                    </span>
+                    bezig.
+                </li>
+
+            </ul>
+
+            <img
+                src="https://cdn-thumbs.ohmyprints.net/1/2ea92a313042653e4d0fe0241ca40929/950x600/thumbnail/fit.jpg"
+                width="300"
+                alt="Dans"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         VRIENDEN
+    ========================= -->
+
+    <section id="vrienden">
+
+        <div class="content">
+
+            <h2>
+                Vrienden 💕
+            </h2>
+
+            <ul>
+
+                <li>
+                    Ik heb echt de
+                    <span class="highlight">
+                        beste vriendinnen ever
+                    </span>.
+                </li>
+
+                <li>
+                    <span class="highlight">
+                        Jana, Norah, Alicia, Margaux,
+                        Margot/Mimi, Lotte, Lily,
+                        Juliette en Hasse
+                    </span>.
+                </li>
+
+                <li>
+                    Ik heb echt super veel geluk met hun
+                    en we hebben altijd de
+                    <span class="highlight">
+                        leukste momenten
+                    </span>
+                    samen.
+                </li>
+
+                <li>
+                    Gwn echt mijn
+                    <span class="highlight">
+                        favoriete mensen ooit
+                    </span>.
+                </li>
+
+            </ul>
+
+            <img
+                src="https://images.stockcake.com/public/c/d/5/cd5f4e72-587b-40e0-91a1-d2e60f152620_large/joyful-beach-gathering-stockcake.jpg"
+                width="250"
+                alt="Vrienden"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAMILIE & REIZEN
+    ========================= -->
+
+    <section class="coral-section" id="familie">
+
+        <div class="content">
+
+            <h2>
+                Familie & reizen ✈️🌊
+            </h2>
+
+            <ul>
+
+                <li>
+                    Ik heb een
+                    <span class="highlight">
+                        super leuke familie
+                    </span>
+                    en love hun echt.
+                </li>
+
+                <li>
+                    Ik
+                    <span class="highlight">
+                        reis
+                    </span>
+                    ook heel graag.
+                </li>
+
+                <li>
+                    We hebben een appartement in
+                    <span class="highlight">
+                        Knokke
+                    </span>.
+                </li>
+
+                <li>
+                    We hebben ook een groot huis in het
+                    <span class="highlight">
+                        zuiden van Frankrijk
+                    </span>.
+                </li>
+
+                <li>
+                    We zijn al naar
+                    <span class="highlight">
+                        Marokko, Egypte, Italië,
+                        Kroatië, Jordanië, Lanzarote,
+                        Frankrijk en Nederland
+                    </span>
+                    geweest.
+                </li>
+
+                <li>
+                    En nog naar
+                    <span class="highlight">
+                        veel meer plaatsen
+                    </span>.
+                </li>
+
+                <li>
+                    Reizen is echt altijd een vibe
+                    en ik vind het leuk om
+                    <span class="highlight">
+                        nieuwe plekken te ontdekken
+                    </span>.
+                </li>
+
+            </ul>
+
+            <img
+                src="https://metromode.se/mmImages/1/2021/07/IMG_2551__mmcompress-normal__.jpg"
+                width="250"
+                alt="Reizen"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAVORIETE ETEN
+    ========================= -->
+
+    <section id="eten">
+
+        <div class="content">
+
+            <h2>
+                Favo eten 🍋🍝
+            </h2>
+
+            <ul>
+
+                <li>
+                    <span class="highlight">
+                        Italiaans
+                    </span>
+                    is altijd super lekker.
+                </li>
+
+                <li>
+                    <span class="highlight">
+                        Frietjes en kaaskroketten
+                    </span>:
+                    lekkkkkeerrrrr.
+                </li>
+
+                <li>
+                    <span class="highlight">
+                        Petatjes uit de airfryer
+                    </span>:
+                    kan ik geen nee tegen zeggen.
+                </li>
+
+                <li>
+                    Voor de rest lust ik bijna alles:
+                    <span class="highlight">
+                        smosjes, vol-au-vent,
+                        hamrolletjes
+                    </span>...
+                </li>
+
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAVORIETE KLEUREN
+    ========================= -->
+
+    <section class="coral-section" id="kleuren">
+
+        <div class="content">
+
+            <h2>
+                Favo kleuren 🎨
+            </h2>
+
+            <p>
+                Ik hou van
+                <span class="highlight">
+                    zomerse kleuren
+                </span>!
+                Mijn favoriet is
+                <span class="highlight">
+                    butter yellow
+                </span>
+                💛
+            </p>
+
+            <div class="color-box">
+
+                <div class="color butter-yellow">
+                    Butter Yellow 💛
+                </div>
+
+                <div class="color greek-blue">
+                    Grieks Blauw 💙
+                </div>
+
+                <div class="color coral">
+                    Koraal 🪸
+                </div>
+
+                <div class="color baby-pink">
+                    Baby Pink 🩷
+                </div>
+
+                <div class="color army-green">
+                    Legergroen 💚
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         QUIZ POP-UP
+    ========================= -->
+
+    <div class="quiz-overlay" id="quizOverlay">
+
+        <div class="quiz-box">
+
+            <button
+                class="close-quiz"
+                onclick="closeQuiz()"
+                aria-label="Quiz sluiten"
+            >
+                ×
+            </button>
+
+
+            <h2 class="quiz-title">
+                Hoe goed ken jij Khloé? 💗
+            </h2>
+
+            <p class="quiz-subtitle">
+                Test je kennis over mij! ☀️🪸
+            </p>
+
+
+            <!-- Vraag 1 -->
+
+            <div class="question">
+
+                <h3>
+                    1. Hoe oud ben ik?
+                </h3>
+
+                <button class="answer" onclick="checkAnswer(this, true)">
+                    13 jaar
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    15 jaar
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    12 jaar
+                </button>
+
+            </div>
+
+
+            <!-- Vraag 2 -->
+
+            <div class="question">
+
+                <h3>
+                    2. Wat is mijn grootste hobby?
+                </h3>
+
+                <button class="answer" onclick="checkAnswer(this, true)">
+                    Dansen 💃
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Voetbal ⚽
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Tekenen 🎨
+                </button>
+
+            </div>
+
+
+            <!-- Vraag 3 -->
+
+            <div class="question">
+
+                <h3>
+                    3. Wat doe ik naast dansen graag?
+                </h3>
+
+                <button class="answer" onclick="checkAnswer(this, true)">
+                    Surfen 🌊
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Schaken ♟️
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Skiën ⛷️
+                </button>
+
+            </div>
+
+
+            <!-- Vraag 4 -->
+
+            <div class="question">
+
+                <h3>
+                    4. Wat is mijn favoriete kleur?
+                </h3>
+
+                <button class="answer" onclick="checkAnswer(this, true)">
+                    Butter Yellow 💛
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Lavender 💜
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Zwart 🖤
+                </button>
+
+            </div>
+
+
+            <!-- Vraag 5 -->
+
+            <div class="question">
+
+                <h3>
+                    5. Waar heb ik een appartement?
+                </h3>
+
+                <button class="answer" onclick="checkAnswer(this, true)">
+                    Knokke 🌊
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Parijs 🗼
+                </button>
+
+                <button class="answer" onclick="checkAnswer(this, false)">
+                    Londen 🇬🇧
+                </button>
+
+            </div>
+
+
+            <div
+                class="quiz-result"
+                id="quizResult"
+            >
+                Kies een antwoord! ✨
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <p>
+            Made with 💛🪸💙 by Khloé
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        let score = 0;
+
+        let answeredQuestions = 0;
+
+
+        /* Quiz openen */
+
+        function openQuiz() {
+
+            document
+                .getElementById("quizOverlay")
+                .classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+
+        /* Quiz sluiten */
+
+        function closeQuiz() {
+
+            document
+                .getElementById("quizOverlay")
+                .classList.remove("active");
+
+            document.body.style.overflow = "auto";
+
+        }
+
+
+        /* Antwoord controleren */
+
+        function checkAnswer(button, correct) {
+
+            /*
+             * Als deze vraag al beantwoord is,
+             * gebeurt er niets meer.
+             */
+
+            if (
+                button.parentElement.dataset.answered === "true"
+            ) {
+                return;
+            }
+
+
+            button.parentElement.dataset.answered = "true";
+
+
+            const buttons =
+                button.parentElement.querySelectorAll(".answer");
+
+
+            buttons.forEach(function(answer) {
+
+                answer.disabled = true;
+
+            });
+
+
+            if (correct) {
+
+                button.classList.add("correct");
+
+                score++;
+
+            } else {
+
+                button.classList.add("wrong");
+
+
+                /*
+                 * Toon automatisch het juiste antwoord.
+                 */
+
+                buttons.forEach(function(answer) {
+
+                    if (
+                        answer.getAttribute("onclick")
+                        .includes("true")
+                    ) {
+
+                        answer.classList.add("correct");
+
+                    }
+
+                });
+
+            }
+
+
+            answeredQuestions++;
+
+
+            /*
+             * Score tonen
+             */
+
+            document.getElementById("quizResult").innerHTML =
+                "Je hebt " +
+                score +
+                " van de " +
+                answeredQuestions +
+                " goed! 💗";
+
+
+            /*
+             * Als alle vragen zijn ingevuld
+             */
+
+            if (answeredQuestions === 5) {
+
+                let message = "";
+
+                if (score === 5) {
+
+                    message =
+                        " OMGGG, jij kent mij echt supergoed! 💅💗";
+
+                } else if (score >= 3) {
+
+                    message =
+                        " Niet slecht baddieee! 🪸✨";
+
+                } else {
+
+                    message =
+                        " Tijd om mijn portfolio nog eens te bekijken! 😂💛";
+
+                }
+
+
+                document.getElementById("quizResult").innerHTML =
+                    "Score: " +
+                    score +
+                    "/5 💗<br>" +
+                    message;
+
+            }
+
+        }
+
+
+        /*
+         * Met ESC kan de quiz ook gesloten worden.
+         */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeQuiz();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
